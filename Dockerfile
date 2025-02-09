@@ -1,11 +1,13 @@
-# Use an official OpenJDK image as base
-FROM openjdk:17
-
-# Set the working directory inside the container
+FROM maven:3.8.6-openjdk-17 AS builder
 WORKDIR /app
 
-# Copy the built JAR file into the container
-COPY target/*.jar app.jar
+COPY . .
 
-# Run the application
+RUN mvn clean package -DskipTests
+
+FROM openjdk:17
+WORKDIR /app
+
+COPY --from=builder /app/target/*.jar app.jar
+
 CMD ["java", "-jar", "app.jar"]
