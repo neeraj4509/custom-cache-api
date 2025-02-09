@@ -7,14 +7,14 @@ import java.util.Map;
 
 @Service
 public class CacheService implements Serializable {
-    private static final long serialVersionUID = 1L; // Added serialVersionUID
+    private static final long serialVersionUID = 1L; 
 
     private final int MAX_CACHE_SIZE = 10;
     private final Map<String, String> cache;
 
     public CacheService() {
         this.cache = new LinkedHashMap<>(MAX_CACHE_SIZE, 0.75f, true) {
-            private static final long serialVersionUID = 1L; // Added serialVersionUID inside LinkedHashMap
+            private static final long serialVersionUID = 1L; 
 
             @Override
             protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {
