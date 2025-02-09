@@ -15,7 +15,6 @@ public class CacheController {
         this.cacheService = cacheService;
     }
 
-    // POST /cache → Stores a key-value pair
     @PostMapping
     public ResponseEntity<String> put(@RequestBody Map<String, String> request) {
         if (!request.containsKey("key") || !request.containsKey("value")) {
@@ -25,13 +24,11 @@ public class CacheController {
         return ResponseEntity.ok(response);
     }
 
-    // GET /cache/{key} → Retrieves a value (if exists)
     @GetMapping("/{key}")
     public ResponseEntity<String> get(@PathVariable String key) {
         return ResponseEntity.ok(cacheService.get(key));
     }
 
-    // DELETE /cache/{key} → Remove from cache
     @DeleteMapping("/{key}")
     public ResponseEntity<String> delete(@PathVariable String key) {
         return ResponseEntity.ok(cacheService.delete(key));
